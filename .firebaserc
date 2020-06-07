@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "react-firebase-gh"
+    "default": "react-firebase-gh",
+    "local": "react-firebase-gh"
   }
 }

@@ -1,17 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Card, Button } from '@shopify/polaris';
+import { Card } from '@shopify/polaris';
+import SignIn from './SignIn';
 
 function App() {
-  const handleLogin = () => {
-    alert('Login clicked');
-  };
-
   return (
     <div className='App'>
       <Card title='welcome' sectioned>
-        <Button onClick={handleLogin}>Login</Button>
+        <SignIn />
       </Card>
     </div>
   );
