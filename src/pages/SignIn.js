@@ -1,11 +1,14 @@
 import React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import firebase from './services/firebase';
+import firebase from '../services/firebase';
 
 class SignInScreen extends React.Component {
-  state = {
-    isSignedIn: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSignedIn: false,
+    };
+  }
 
   // Configure FirebaseUI.
   uiConfig = {
@@ -24,9 +27,17 @@ class SignInScreen extends React.Component {
 
   // Listen to the Firebase Auth state and set the local state.
   componentDidMount() {
-    this.unregisterAuthObserver = firebase
-      .auth()
-      .onAuthStateChanged((user) => this.setState({ isSignedIn: !!user }));
+    this.unregisterAuthObserver = firebase.auth().onAuthStateChanged((user) => {
+      user
+        .sendEmailVerification()
+        .then((res) => {
+          console.log({ res });
+        })
+        .catch((err) => {
+          console.log({ err });
+        });
+      this.setState({ isSignedIn: !!user });
+    });
   }
 
   // Make sure we un-register Firebase observers when the component unmounts.
