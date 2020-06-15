@@ -1,8 +1,5 @@
 name: Firebase Deploy
-on:
-  push:
-    branches:
-      - master
+on: push
 
 jobs:
   build:
@@ -37,6 +34,8 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: build
+      - name: List directory files
+        run: ls -lah
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
