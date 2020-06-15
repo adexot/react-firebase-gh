@@ -2,5 +2,14 @@
   "projects": {
     "default": "react-firebase-gh",
     "local": "react-firebase-gh"
+  },
+  "targets": {
+    "react-firebase-gh": {
+      "hosting": {
+        "staging": [
+          "staging-react-firebase-gh"
+        ]
+      }
+    }
   }
 }

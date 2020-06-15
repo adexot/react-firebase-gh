@@ -27,17 +27,23 @@ class SignInScreen extends React.Component {
 
   // Listen to the Firebase Auth state and set the local state.
   componentDidMount() {
-    this.unregisterAuthObserver = firebase.auth().onAuthStateChanged((user) => {
-      user
-        .sendEmailVerification()
-        .then((res) => {
-          console.log({ res });
-        })
-        .catch((err) => {
-          console.log({ err });
+    try {
+      this.unregisterAuthObserver = firebase
+        .auth()
+        .onAuthStateChanged((user) => {
+          user
+            .sendEmailVerification()
+            .then((res) => {
+              console.log({ res });
+            })
+            .catch((err) => {
+              console.log({ err });
+            });
+          this.setState({ isSignedIn: !!user });
         });
-      this.setState({ isSignedIn: !!user });
-    });
+    } catch (err) {
+      console.error({ err });
+    }
   }
 
   // Make sure we un-register Firebase observers when the component unmounts.
